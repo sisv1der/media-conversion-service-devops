@@ -23,6 +23,8 @@ compose_up() {
 clone_or_pull "$BACKEND_GITHUB_URL" "backend"
 clone_or_pull "$FRONTEND_GITHUB_URL" "frontend"
 
+sudo chmod +x ./backend/mvnw
+
 shutdown_app
 
 compose_up
