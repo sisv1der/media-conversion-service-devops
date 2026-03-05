@@ -80,6 +80,7 @@ services:
     image: caddy:2.11.1
     ports: 
       - "80:80"
+      - "443:443"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
     depends_on:
