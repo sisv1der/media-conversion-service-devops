@@ -12,6 +12,21 @@ clone_or_pull() {
 	fi
 }
 
+check_file() {
+	local filename="$1"
+
+	if [ !-x "$filename"]; then 
+		echo "Error: $filename does not have execute permission for the current user"
+		echo "Granting the permission to resume deploy"
+		if sudo chmod +x "$filename"; then
+			echo "Execute permission granted successfully"
+		else
+			echo "Failed to grant execute permission"
+			return 1
+		fi
+	fi
+}
+
 shutdown_app() {
 	docker compose down
 }
@@ -23,7 +38,7 @@ compose_up() {
 clone_or_pull "$BACKEND_GITHUB_URL" "backend"
 clone_or_pull "$FRONTEND_GITHUB_URL" "frontend"
 
-sudo chmod +x ./backend/mvnw
+check_file "./backend/mvnw"
 
 shutdown_app
 
