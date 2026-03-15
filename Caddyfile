@@ -1,8 +1,15 @@
 svivy.ru {
 		
-	handle /coursework/* {
+	handle /coursework-pdf {
 		root * /var/www/static
-		file_server browse
+		rewrite * /coursework.pdf
+		file_server
+	}
+	
+	handle /coursework-docx {
+		root * /var/www/static
+		rewrite * /coursework.docx
+		file_server
 	}
 
 	handle /api/* {
