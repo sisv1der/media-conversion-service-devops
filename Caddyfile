@@ -1,5 +1,16 @@
 svivy.ru {
-	
+		
+	handle /coursework {
+		root * /var/www/static
+		rewrite * /coursework.pdf
+		file_server
+	}
+
+	handle /cousework/* {
+		root * /var/www/static
+		file_server
+	}
+
 	handle /api/* {
                 reverse_proxy backend:8080
         }	
