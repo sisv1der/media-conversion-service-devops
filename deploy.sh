@@ -15,7 +15,7 @@ clone_or_pull() {
 check_file() {
 	local filename="$1"
 
-	if [ !-x "$filename"]; then 
+	if [ ! -x "$filename" ]; then 
 		echo "Error: $filename does not have execute permission for the current user"
 		echo "Granting the permission to resume deploy"
 		if sudo chmod +x "$filename"; then
